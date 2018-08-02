@@ -13,7 +13,7 @@ void Game::run() {
 	}
 }
 void Game::update(sf::Time deltaTime){
-	
+	player->move(deltaTime);
 }
 void Game::processEvents() {
 	sf::Event event;
@@ -24,20 +24,30 @@ void Game::processEvents() {
 		case sf::Event::Closed:
 			window.close();
 			break;
+		case sf::Event::KeyPressed:
+			player->handlePlayerInput(event.key.code, true);
+			break;
+		case sf::Event::KeyReleased:
+			player->handlePlayerInput(event.key.code, false);
+			break;
+
 		}
+
 	}
 }
 
 void Game::render() {
 	window.clear();
 	//DIBUJO
-
+	player->draw();
 	window.display();
 }
 Game::~Game() {
-
+	delete player;
 }
 Game::Game(){
-window.create(sf::VideoMode(widthScene,HeightScene), "ARKANOID");
+window.create(sf::VideoMode(widthScene,heightScene), "ARKANOID");
+player = new Player(&window);
+
 run();
 }

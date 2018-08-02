@@ -2,8 +2,8 @@
 #define GAME_H
 #include<SFML/Window.hpp>
 #include<SFML/Graphics.hpp>
-const int widthScene=800;
-const int HeightScene=600;
+#include"Player.h"
+#include"Reg.h"
 class Game
 {
 public:
@@ -14,7 +14,9 @@ private:
 	void update(sf::Time deltaTime);
 	void processEvents();
 	void render();
+	
 	sf::RenderWindow window;
+	Player* player;
 };
 
 #endif // !GAME_H
