@@ -17,10 +17,12 @@ public:
 	void draw();
 	void handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
 	void move(sf::Time deltaTime);
+	sf::Sprite sprite;
+	bool activeShoot;
 private:
 	void initialize();
 	float velocity;
-	sf::Sprite sprite;
+
 	sf::Texture texture;
 	sf::RenderWindow* window;
 	bool left;

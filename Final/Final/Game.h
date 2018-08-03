@@ -5,6 +5,7 @@
 #include"Player.h"
 #include"Reg.h"
 #include"Scene.h"
+#include"Ball.h"
 class Game
 {
 public:
@@ -19,6 +20,7 @@ private:
 	sf::RenderWindow window;
 	Player* player;
 	Scene* scene;
+	Ball* ball;
 };
 
 #endif // !GAME_H

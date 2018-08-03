@@ -10,6 +10,10 @@ void Player::handlePlayerInput(sf::Keyboard::Key key, bool isPressed){
 	if (key == sf::Keyboard::Left) {
 		left = isPressed;
 	}
+	if (key == sf::Keyboard::Space) {
+		activeShoot = isPressed;
+	//	cout << "activando disparo";
+	}
 
 }
 void Player::move(sf::Time deltaTime){
@@ -34,7 +38,7 @@ void Player::initialize(){
 
 Player::~Player(){}
 Player::Player(sf::RenderWindow* _window,DimensionsScene _dimensions)
-	: window(_window), velocity(450),dimensionsScene(_dimensions)
+	: window(_window), velocity(450),dimensionsScene(_dimensions),activeShoot(false)
 {
 	initialize();
 }

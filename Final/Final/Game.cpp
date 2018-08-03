@@ -14,6 +14,7 @@ void Game::run() {
 }
 void Game::update(sf::Time deltaTime){
 	player->move(deltaTime);
+	ball->update(deltaTime);
 }
 void Game::processEvents() {
 	sf::Event event;
@@ -41,6 +42,7 @@ void Game::render() {
 	//DIBUJO
 	scene->draw();
 	player->draw();
+	ball->draw();
 	window.display();
 }
 Game::~Game() {
@@ -52,6 +54,7 @@ Game::Game(){
 window.create(sf::VideoMode::getFullscreenModes()[0], "ARKANOID", sf::Style::Fullscreen);
 scene = new Scene(&window);
 player = new Player(&window,scene->dimensions);
+ball = new Ball(&window, scene->dimensions, player);
 
 run();
 }
