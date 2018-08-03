@@ -14,10 +14,10 @@ void Player::handlePlayerInput(sf::Keyboard::Key key, bool isPressed){
 }
 void Player::move(sf::Time deltaTime){
 	sf::Vector2f movement(0.f, 0.f);
-	if (right&&sprite.getPosition().x+sprite.getLocalBounds().width<widthScene) {
+	if (right&&sprite.getPosition().x+sprite.getLocalBounds().width<dimensionsScene.width) {
 		movement.x += velocity;
 	}
-	if (left&&sprite.getPosition().x>0) {
+	if (left&&sprite.getPosition().x>dimensionsScene.origin.x) {
 		movement.x -= velocity;
 	}
 	sprite.move(movement*deltaTime.asSeconds());
@@ -27,13 +27,14 @@ void Player::initialize(){
 		std::cout << "error";
 	};
 	sprite.setTexture(texture);
-	sprite.setPosition(widthScene/2-sprite.getLocalBounds().width/2, heightScene-sprite.getLocalBounds().height);
-	
+	sprite.setPosition(dimensionsScene.half-sprite.getLocalBounds().width/2,dimensionsScene.height-sprite.getLocalBounds().height);
+//sprite.setPosition(dimensionsScene.width-sprite.getGlobalBounds().width, dimensionsScene.height - sprite.getLocalBounds().height);
+
 }
 
 Player::~Player(){}
-Player::Player(sf::RenderWindow* _window)
-	: window(_window), velocity(450)
+Player::Player(sf::RenderWindow* _window,DimensionsScene _dimensions)
+	: window(_window), velocity(450),dimensionsScene(_dimensions)
 {
 	initialize();
 }

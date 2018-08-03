@@ -4,6 +4,7 @@
 #include<SFML/Graphics.hpp>
 #include"Player.h"
 #include"Reg.h"
+#include"Scene.h"
 class Game
 {
 public:
@@ -17,6 +18,7 @@ private:
 	
 	sf::RenderWindow window;
 	Player* player;
+	Scene* scene;
 };
 
 #endif // !GAME_H

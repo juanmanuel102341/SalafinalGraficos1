@@ -39,15 +39,19 @@ void Game::processEvents() {
 void Game::render() {
 	window.clear();
 	//DIBUJO
+	scene->draw();
 	player->draw();
 	window.display();
 }
 Game::~Game() {
 	delete player;
+	delete scene;
 }
 Game::Game(){
-window.create(sf::VideoMode(widthScene,heightScene), "ARKANOID");
-player = new Player(&window);
+//window.create(sf::VideoMode(widthScene,heightScene), "ARKANOID");
+window.create(sf::VideoMode::getFullscreenModes()[0], "ARKANOID", sf::Style::Fullscreen);
+scene = new Scene(&window);
+player = new Player(&window,scene->dimensions);
 
 run();
 }
