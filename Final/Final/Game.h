@@ -7,6 +7,7 @@
 #include"Scene.h"
 #include"Ball.h"
 #include"Collision.h"
+#include"Bricks.h"
 class Game
 {
 public:
@@ -23,7 +24,7 @@ private:
 	Scene* scene;
 	Ball* ball;
 	Collision* collision;
-	
+	Bricks* bricks;
 };
 
 #endif // !GAME_H

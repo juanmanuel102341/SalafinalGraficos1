@@ -44,6 +44,7 @@ void Game::render() {
 	//DIBUJO
 	scene->draw();
 	player->draw();
+	bricks->draw();
 	ball->draw();
 	window.display();
 }
@@ -51,6 +52,7 @@ Game::~Game() {
 	delete player;
 	delete scene;
 	delete ball;
+	delete bricks;
 	delete collision;
 }
 Game::Game(){
@@ -59,6 +61,7 @@ window.create(sf::VideoMode::getFullscreenModes()[0], "ARKANOID", sf::Style::Ful
 scene = new Scene(&window);
 player = new Player(&window,scene->dimensions);
 ball = new Ball(&window, scene->dimensions, player);
+bricks = new Bricks(&window, scene->dimensions);
 collision = new Collision(ball, scene,player);
 run();
 }
