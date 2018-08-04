@@ -1,6 +1,9 @@
 #include"Scene.h"
 void Scene::draw(){
 	window->draw(sprite);
+	window->draw(colliderUp);
+	window->draw(colliderleft);
+	window->draw(colliderRight);
 }
 void Scene::init(){
 	if (!texture.loadFromFile("assets/gameArea.png")) {
@@ -16,6 +19,16 @@ void Scene::init(){
 	dimensions.half = sprite.getPosition().x + sprite.getLocalBounds().width / 2;
 	dimensions.height = sprite.getPosition().y + sprite.getLocalBounds().height;
 
+	colliderUp.setSize(sf::Vector2f(sprite.getLocalBounds().width,40));
+	colliderUp.setPosition(sprite.getPosition().x, sprite.getPosition().y);
+
+	colliderleft.setSize(sf::Vector2f(40, sprite.getLocalBounds().height));
+	colliderleft.setPosition(sprite.getPosition().x, sprite.getPosition().y);
+	colliderleft.setFillColor(sf::Color::Blue);
+	
+	colliderRight.setSize(sf::Vector2f(40, sprite.getLocalBounds().height));
+	colliderRight.setPosition(sprite.getPosition().x + sprite.getLocalBounds().width-38, sprite.getPosition().y);
+	colliderRight.setFillColor(sf::Color::Red);
 }
 Scene::~Scene(){}
 Scene::Scene(sf::RenderWindow* _window): window(_window){

@@ -15,6 +15,8 @@ void Game::run() {
 void Game::update(sf::Time deltaTime){
 	player->move(deltaTime);
 	ball->update(deltaTime);
+	collision->collideBallBoundarys();
+	collision->collideBallPlayer();
 }
 void Game::processEvents() {
 	sf::Event event;
@@ -48,6 +50,8 @@ void Game::render() {
 Game::~Game() {
 	delete player;
 	delete scene;
+	delete ball;
+	delete collision;
 }
 Game::Game(){
 //window.create(sf::VideoMode(widthScene,heightScene), "ARKANOID");
@@ -55,6 +59,6 @@ window.create(sf::VideoMode::getFullscreenModes()[0], "ARKANOID", sf::Style::Ful
 scene = new Scene(&window);
 player = new Player(&window,scene->dimensions);
 ball = new Ball(&window, scene->dimensions, player);
-
+collision = new Collision(ball, scene,player);
 run();
 }

@@ -20,6 +20,9 @@ public:
 	sf::Sprite sprite;
 	sf::Texture texture;
 	sf::RenderWindow* window;
+	sf::RectangleShape colliderUp;
+	sf::RectangleShape colliderleft;
+	sf::RectangleShape colliderRight;
 	DimensionsScene dimensions;
 private:
 

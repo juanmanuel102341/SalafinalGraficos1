@@ -6,6 +6,7 @@
 #include"Reg.h"
 #include"Scene.h"
 #include"Ball.h"
+#include"Collision.h"
 class Game
 {
 public:
@@ -21,6 +22,8 @@ private:
 	Player* player;
 	Scene* scene;
 	Ball* ball;
+	Collision* collision;
+	
 };
 
 #endif // !GAME_H
