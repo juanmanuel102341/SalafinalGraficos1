@@ -5,6 +5,7 @@ void Game::run() {
 	sf::Clock clock;
 
 	musicLevel.play();
+	
 	musicLevel.setLoop(true);
 	while (window.isOpen())
 	{
@@ -61,6 +62,7 @@ Game::~Game() {
 }
 Game::Game(){
 //window.create(sf::VideoMode(widthScene,heightScene), "ARKANOID");
+
 window.create(sf::VideoMode::getFullscreenModes()[0], "ARKANOID", sf::Style::Fullscreen);
 scene = new Scene(&window);
 player = new Player(&window,scene->dimensions);

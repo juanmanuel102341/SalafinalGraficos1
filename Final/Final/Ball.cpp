@@ -59,10 +59,15 @@ void Ball::update(sf::Time deltaTime){
 		//para q siga al player
 		sprite.setPosition(player->sprite.getPosition().x + player->sprite.getLocalBounds().width / 2 - sprite.getLocalBounds().width / 2, player->sprite.getPosition().y - sprite.getLocalBounds().height);
 	}
+	if (sprite.getPosition().y + sprite.getGlobalBounds().height > dimensionsScene.height) {
+	
+		player->animationDead(deltaTime);
+	}
 	move(deltaTime);
 }
 
 void Ball::draw() {
+	
 	window->draw(sprite);
 }
 void Ball::init(){
