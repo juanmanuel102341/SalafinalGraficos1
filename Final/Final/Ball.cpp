@@ -6,8 +6,6 @@ void Ball::move(sf::Time deltaTime) {
 		//propy = 1;
 		
 	}
-	
-
 	sprite.move(velocity*propx*deltaTime.asSeconds()*directionX,velocity*propy*deltaTime.asSeconds()*directionY);
 }
 void Ball::contactPlayer(){
@@ -56,8 +54,13 @@ void Ball::update(sf::Time deltaTime){
 		player->activeShoot = false;
 		cout << "activando bola" << endl;
 	}
+	if (active == false) {
+		//para q siga al player
+		sprite.setPosition(player->sprite.getPosition().x + player->sprite.getLocalBounds().width / 2 - sprite.getLocalBounds().width / 2, player->sprite.getPosition().y - sprite.getLocalBounds().height);
+	}
 	move(deltaTime);
 }
+
 void Ball::draw() {
 	window->draw(sprite);
 }

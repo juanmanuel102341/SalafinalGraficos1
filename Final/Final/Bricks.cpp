@@ -1,26 +1,16 @@
 #include"Bricks.h"
 
 void Bricks::draw(){
-	for (int i = 0; i < numberOfBricks*numberOfLines; i++) {
+	for (int i = 0; i < Vecbricks.size(); i++) {
 		window->draw(Vecbricks[i]->sprite);
 	}
 }
-sf::Texture Bricks::returnTexture(int id) {
-	switch (id)
-	{
-	case 0:
-		
-		return textureBlue;
-		break;
-	case 1:
-		
-		return textureRed;
-		break;
-	}
+void Bricks::takeOutBrick(Brick* brick ) {
+//	Vecbricks.(brick);
 }
 void Bricks::init(){
-	int gapX=15;
-	int gapY = 20;
+	int gapX=25;
+	int gapY = 45;
 	int sumX = 0;
 	int sumY = 0;
 	int heightBrick;
@@ -36,7 +26,7 @@ void Bricks::init(){
 			Brick* brick = new Brick;
 			brick->texture = currentTexture;
 			brick->sprite.setTexture(brick->texture);
-			brick->position.x = dimensions.origin.x + 50 + sumX;
+			brick->position.x = dimensions.origin.x + 100 + sumX;
 			brick->position.y = dimensions.origin.y + 50+sumY;
 			brick->sprite.setPosition(brick->position);
 			sumX += brick->sprite.getLocalBounds().width + gapX;
@@ -72,6 +62,8 @@ Bricks::~Bricks() {
 		delete brick;
 	}
 }
-Bricks::Bricks(sf::RenderWindow* _window, DimensionsScene _dimensionsScene): window(_window),dimensions(_dimensionsScene) {
+Bricks::Bricks(sf::RenderWindow* _window, DimensionsScene _dimensionsScene): window(_window),dimensions(_dimensionsScene)
+
+{
 	init();
 }

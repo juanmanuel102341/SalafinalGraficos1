@@ -16,9 +16,11 @@ public:
 	void update(sf::Time deltaTime);
 	void move(sf::Time deltaTime);
 	void contactPlayer();
+
 	sf::Sprite sprite;
 	float directionY;
 	float directionX;
+
 private:
 	void init();
 	

@@ -14,11 +14,12 @@ class Bricks
 		sf::Vector2f position;
 	};
 public:
-	const int numberOfBricks=6;
-	const int numberOfLines = 6;
+	const int numberOfBricks=5;
+	const int numberOfLines = 5;
 	Bricks(sf::RenderWindow* window, DimensionsScene _dimensionsScene);
 	~Bricks();
 	void draw();
+	void takeOutBrick(Brick*brick);
 	std::vector<Brick*>Vecbricks;
 	
 private:
@@ -29,7 +30,6 @@ private:
 	sf::Texture textureRed;
 	sf::Texture textureBrown;
 	sf::Texture textureGreen;
-	sf::Texture returnTexture(int id);
 	sf::Texture currentTexture;
 };
 

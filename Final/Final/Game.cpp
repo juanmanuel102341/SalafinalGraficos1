@@ -17,6 +17,7 @@ void Game::update(sf::Time deltaTime){
 	ball->update(deltaTime);
 	collision->collideBallBoundarys();
 	collision->collideBallPlayer();
+	collision->collideBallBricks();
 }
 void Game::processEvents() {
 	sf::Event event;
@@ -62,6 +63,6 @@ scene = new Scene(&window);
 player = new Player(&window,scene->dimensions);
 ball = new Ball(&window, scene->dimensions, player);
 bricks = new Bricks(&window, scene->dimensions);
-collision = new Collision(ball, scene,player);
+collision = new Collision(ball, scene,player,bricks);
 run();
 }
