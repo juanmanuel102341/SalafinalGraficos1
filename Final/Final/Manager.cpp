@@ -1,14 +1,22 @@
 #include"Manager.h"
-
+void Manager::resetlevel() {
+	bricks->Vecbricks.clear();
+	bricks->initialBricks();
+	player->resetState();
+	player->currentLifes = player->totalLifes;
+}
 void Manager::update(sf::Time deltaTime){
 	if (scene->loose) {
 		if (player->reset) {
-			bricks->Vecbricks.clear();
-			bricks->initialBricks();
-			player->resetState();
-			player->currentLifes = player->totalLifes;
+			resetlevel();
 		}
 		
+	}
+	if (scene->levelPass) {
+		if (player->reset) {
+			resetlevel();
+		}
+				
 	}
 
 }

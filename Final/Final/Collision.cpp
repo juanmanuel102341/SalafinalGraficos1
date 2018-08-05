@@ -26,7 +26,7 @@ void Collision::collideBallBricks() {
 	
 		if (ball->sprite.getPosition().x + ball->sprite.getLocalBounds().width>spriteBrick.getPosition().x
 			&&ball->sprite.getPosition().x < spriteBrick.getPosition().x + spriteBrick.getLocalBounds().width
-			&&ball->sprite.getPosition().y < spriteBrick.getPosition().y + spriteBrick.getLocalBounds().height
+			&&ball->sprite.getPosition().y-5 < spriteBrick.getPosition().y + spriteBrick.getLocalBounds().height
 			&&ball->sprite.getPosition().y+ball->sprite.getGlobalBounds().height>spriteBrick.getPosition().y	 )
 		{
 		//contacto por x abajo

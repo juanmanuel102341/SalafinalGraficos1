@@ -13,7 +13,7 @@ private:
 	Player* player;
 	Bricks* bricks;
 	Scene* scene;
-
+	void resetlevel();
 };
 
 #endif // !MANAGER_H
