@@ -2,12 +2,14 @@
 #define GAME_H
 #include<SFML/Window.hpp>
 #include<SFML/Graphics.hpp>
+#include<SFML/Audio.hpp>
 #include"Player.h"
 #include"Reg.h"
 #include"Scene.h"
 #include"Ball.h"
 #include"Collision.h"
 #include"Bricks.h"
+
 class Game
 {
 public:
@@ -25,6 +27,7 @@ private:
 	Ball* ball;
 	Collision* collision;
 	Bricks* bricks;
+	sf::Music musicLevel;
 };
 
 #endif // !GAME_H

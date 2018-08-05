@@ -9,6 +9,10 @@ void Scene::init(){
 	if (!texture.loadFromFile("assets/gameArea.png")) {
 		std::cout << "error";
 	};
+	if (!bufferEfectColision.loadFromFile("assets/Sounds/zapBoundary.wav")) {
+		std::cout << "error loaded sound efect scene";
+	}
+	soundEfectColision.setBuffer(bufferEfectColision);
 	sprite.setTexture(texture);
 	sprite.setPosition(sf::VideoMode::getDesktopMode().width / 2 - sprite.getLocalBounds().width / 2, sf::VideoMode::getDesktopMode().height/2 - sprite.getLocalBounds().height / 2);
 	dimensions.origin = sprite.getPosition();

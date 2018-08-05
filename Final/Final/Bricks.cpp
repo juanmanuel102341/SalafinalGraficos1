@@ -14,6 +14,10 @@ void Bricks::init(){
 	int sumX = 0;
 	int sumY = 0;
 	int heightBrick;
+	if (!bufferEfectSound.loadFromFile("assets/Sounds/zapBricks.wav")) {
+		std::cout << "error loaded sound efect brick";
+	}
+	soundColision.setBuffer(bufferEfectSound);
 	if (!textureBlue.loadFromFile("assets/brickBlue.png")|| !textureRed.loadFromFile("assets/brickRed.png")||!textureGreen.loadFromFile("assets/brickGreen.png")||!textureBrown.loadFromFile("assets/brickBrown.png")) {
 		std::cout << "error charge texture";
 	}

@@ -3,6 +3,9 @@
 
 void Game::run() {
 	sf::Clock clock;
+
+	musicLevel.play();
+	musicLevel.setLoop(true);
 	while (window.isOpen())
 	{
 		sf::Time deltaTime = clock.restart();
@@ -64,5 +67,8 @@ player = new Player(&window,scene->dimensions);
 ball = new Ball(&window, scene->dimensions, player);
 bricks = new Bricks(&window, scene->dimensions);
 collision = new Collision(ball, scene,player,bricks);
+if (!musicLevel.openFromFile("assets/Sounds/music.wav")) {
+	std::cout << "error loaded music wav";
+}
 run();
 }

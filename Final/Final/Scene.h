@@ -2,6 +2,7 @@
 #define SCENE_H
 #include<SFML/Window.hpp>
 #include<SFML/Graphics.hpp>
+#include<SFML/Audio.hpp>
 #include<iostream>
 #include"Reg.h"
 using namespace std;
@@ -23,9 +24,10 @@ public:
 	sf::RectangleShape colliderUp;
 	sf::RectangleShape colliderleft;
 	sf::RectangleShape colliderRight;
+	sf::Sound soundEfectColision;
 	DimensionsScene dimensions;
 private:
-
+	sf::SoundBuffer bufferEfectColision;
 };
 #endif // !SCENE_H
 

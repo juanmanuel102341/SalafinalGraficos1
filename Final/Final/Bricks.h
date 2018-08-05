@@ -2,6 +2,7 @@
 #define BRICKS_H
 #include<SFML/Window.hpp>
 #include<SFML/Graphics.hpp>
+#include<SFML/Audio.hpp>
 #include<vector>
 #include"Scene.h"
 
@@ -21,7 +22,7 @@ public:
 	void draw();
 	void takeOutBrick(Brick*brick);
 	std::vector<Brick*>Vecbricks;
-	
+	sf::Sound soundColision;
 private:
 	void init();
 	sf::RenderWindow* window;
@@ -31,6 +32,7 @@ private:
 	sf::Texture textureBrown;
 	sf::Texture textureGreen;
 	sf::Texture currentTexture;
+	sf::SoundBuffer bufferEfectSound;
 };
 
 #endif // !BRICKS_H

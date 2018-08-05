@@ -30,6 +30,10 @@ void Player::initialize(){
 	if (!texture.loadFromFile("assets/playerNormal.png")) {
 		std::cout << "error";
 	};
+	if (!soundBuffer.loadFromFile("assets/Sounds/zapPlayer.wav")) {
+		std::cout << "error al cargar el sonido";
+	}
+	soundColision.setBuffer(soundBuffer);
 	sprite.setTexture(texture);
 	sprite.setPosition(dimensionsScene.half-sprite.getLocalBounds().width/2,dimensionsScene.height-sprite.getLocalBounds().height);
 //sprite.setPosition(dimensionsScene.width-sprite.getGlobalBounds().width, dimensionsScene.height - sprite.getLocalBounds().height);

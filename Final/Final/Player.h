@@ -2,7 +2,7 @@
 #define PLAYER_H
 #include<SFML/Window.hpp>
 #include<SFML/Graphics.hpp>
-
+#include<SFML/Audio.hpp>
 #include"Reg.h"
 #include<iostream>
 #include"Scene.h"
@@ -19,12 +19,14 @@ public:
 	void move(sf::Time deltaTime);
 	sf::Sprite sprite;
 	bool activeShoot;
+	sf::Sound soundColision;
 private:
 	void initialize();
 	float velocity;
-
 	sf::Texture texture;
 	sf::RenderWindow* window;
+	sf::SoundBuffer soundBuffer;
+	
 	bool left;
 	bool right;
 	DimensionsScene dimensionsScene;

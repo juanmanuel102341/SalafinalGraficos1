@@ -52,6 +52,7 @@ void Ball::update(sf::Time deltaTime){
 		propx = 0;
 		propy = 1;
 		player->activeShoot = false;
+		player->soundColision.play();
 		cout << "activando bola" << endl;
 	}
 	if (active == false) {
