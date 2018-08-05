@@ -37,8 +37,8 @@ void Collision::collideBallBricks() {
 		
 	if (ball->sprite.getPosition().y + ball->sprite.getLocalBounds().height>spriteBrick.getPosition().y
 			&&ball->sprite.getPosition().y<spriteBrick.getPosition().y + spriteBrick.getLocalBounds().height
-			&&ball->sprite.getPosition().x + ball->sprite.getLocalBounds().width>spriteBrick.getPosition().x
-			&&ball->sprite.getPosition().x<spriteBrick.getPosition().x+spriteBrick.getLocalBounds().width) {
+			&&ball->sprite.getPosition().x + ball->sprite.getLocalBounds().width+5>spriteBrick.getPosition().x
+			&&ball->sprite.getPosition().x-5<spriteBrick.getPosition().x+spriteBrick.getLocalBounds().width) {
 		//contacto por el costado	
 			bricks->soundColision.play();
 			ball->directionX *= -1;
