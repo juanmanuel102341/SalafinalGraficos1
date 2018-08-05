@@ -20,7 +20,8 @@ public:
 	sf::Sprite sprite;
 	float directionY;
 	float directionX;
-
+	bool dead;
+	bool active;
 private:
 	void init();
 	
@@ -28,7 +29,8 @@ private:
 	sf::RenderWindow* window;
 	sf::Texture texture;
 	Player* player;
-	bool active;
+	
+	
 	float velocity;
 	float propx;
 	float propy;

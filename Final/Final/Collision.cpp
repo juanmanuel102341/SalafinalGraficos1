@@ -2,6 +2,7 @@
 void Collision::collideBallBoundarys() {
 	if (ball->sprite.getGlobalBounds().intersects(scene->colliderUp.getGlobalBounds())) {
 	//	cout << "colsion limite superior" << endl;
+		
 		scene->soundEfectColision.play();
 		ball->directionY *= -1;
 		
@@ -32,6 +33,7 @@ void Collision::collideBallBricks() {
 			bricks->soundColision.play();
 			ball->directionY *= -1;
 			bricks->Vecbricks.erase(bricks->Vecbricks.begin() + i);
+		
 			break;
 		}
 		
@@ -49,6 +51,13 @@ void Collision::collideBallBricks() {
 			break;
 		}
 	
+	}
+	if (bricks->Vecbricks.size() == 0) {
+		std::cout << "win";
+		if (!scene->levelPass) {
+			scene->soundWin.play();
+			scene->levelPass = true;
+		}
 	}
 	
 	}

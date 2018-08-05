@@ -5,15 +5,9 @@ void Bricks::draw(){
 		window->draw(Vecbricks[i]->sprite);
 	}
 }
-void Bricks::takeOutBrick(Brick* brick ) {
-//	Vecbricks.(brick);
-}
+
 void Bricks::init(){
-	int gapX=25;
-	int gapY = 45;
-	int sumX = 0;
-	int sumY = 0;
-	int heightBrick;
+	
 	if (!bufferEfectSound.loadFromFile("assets/Sounds/zapBricks.wav")) {
 		std::cout << "error loaded sound efect brick";
 	}
@@ -22,23 +16,32 @@ void Bricks::init(){
 		std::cout << "error charge texture";
 	}
 	
+	initialBricks();
+	
+}
+void Bricks::initialBricks(){
+	int gapX = 25;
+	int gapY = 45;
+	int sumX = 0;
+	int sumY = 0;
+	int heightBrick;
 	currentTexture = textureBlue;
 	for (int i0 = 0; i0 < numberOfLines; i0++) {
-	
+
 		sumX = 0;
 		for (int i = 0; i < numberOfBricks; i++) {
 			Brick* brick = new Brick;
 			brick->texture = currentTexture;
 			brick->sprite.setTexture(brick->texture);
 			brick->position.x = dimensions.origin.x + 100 + sumX;
-			brick->position.y = dimensions.origin.y + 50+sumY;
+			brick->position.y = dimensions.origin.y + 50 + sumY;
 			brick->sprite.setPosition(brick->position);
 			sumX += brick->sprite.getLocalBounds().width + gapX;
 			Vecbricks.push_back(brick);
 			heightBrick = brick->sprite.getLocalBounds().height;
 		}
 		sumY += heightBrick + gapY;
-		
+
 		switch (i0)
 		{
 		case 0:
@@ -55,11 +58,11 @@ void Bricks::init(){
 			break;
 		case 4:
 			currentTexture = textureRed;
-		}	
-	
-	}
-}
+		}
 
+	}
+
+}
 Bricks::~Bricks() {
 	for (int i = 0; i < numberOfBricks; i++) {
 		Brick*brick = Vecbricks[i];

@@ -25,9 +25,13 @@ public:
 	sf::RectangleShape colliderleft;
 	sf::RectangleShape colliderRight;
 	sf::Sound soundEfectColision;
+	sf::Sound soundWin;
 	DimensionsScene dimensions;
+	bool levelPass;
+	bool loose;
 private:
 	sf::SoundBuffer bufferEfectColision;
+	sf::SoundBuffer bufferEfectWin;
 };
 #endif // !SCENE_H
 

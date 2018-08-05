@@ -5,14 +5,16 @@ void Scene::draw(){
 	window->draw(colliderleft);
 	window->draw(colliderRight);
 }
+
 void Scene::init(){
 	if (!texture.loadFromFile("assets/gameArea.png")) {
 		std::cout << "error";
 	};
-	if (!bufferEfectColision.loadFromFile("assets/Sounds/zapBoundary.wav")) {
+	if (!bufferEfectColision.loadFromFile("assets/Sounds/zapBoundary.wav")||!bufferEfectWin.loadFromFile("assets/Sounds/win.wav")) {
 		std::cout << "error loaded sound efect scene";
 	}
 	soundEfectColision.setBuffer(bufferEfectColision);
+	soundWin.setBuffer(bufferEfectWin);
 	sprite.setTexture(texture);
 	sprite.setPosition(sf::VideoMode::getDesktopMode().width / 2 - sprite.getLocalBounds().width / 2, sf::VideoMode::getDesktopMode().height/2 - sprite.getLocalBounds().height / 2);
 	dimensions.origin = sprite.getPosition();
@@ -35,6 +37,6 @@ void Scene::init(){
 	colliderRight.setFillColor(sf::Color::Red);
 }
 Scene::~Scene(){}
-Scene::Scene(sf::RenderWindow* _window): window(_window){
+Scene::Scene(sf::RenderWindow* _window): window(_window),levelPass(false),loose(false){
 	init();
 }

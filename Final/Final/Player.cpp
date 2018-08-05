@@ -16,10 +16,40 @@ void Player::animationDead(sf::Time deltaTime) {
 		if (contador == vecTextureAnimation.size() - 1) {
 			dead = true;
 			contador = 0;
+			activeAnimation = false;
 			
 		}
 		
 	}
+}
+void Player::update(sf::Time deltaTime) {
+	if (dead&&!activeAnimation) {
+		timer += deltaTime.asSeconds();
+		if (timer > 1.0f) {
+			if (currentLifes > 0) {
+				soundRespawn.play();
+				resetState();
+				timer = 0;
+				currentLifes--;
+			//	std::cout << "cantidad d vidas current " << currentLifes;
+			}else{
+				//soundLoose.play();
+
+				scene->loose = true;
+			
+			}
+		}
+	}
+	if (activeAnimation) {
+		animationDead(deltaTime);
+	}
+}
+void Player::resetState(){
+	dead = false;
+	sprite.setTexture(texture);
+	sprite.setPosition(scene->dimensions.half - sprite.getLocalBounds().width / 2, scene->dimensions.height - sprite.getLocalBounds().height);
+	respawnBall = true;
+
 }
 void Player::handlePlayerInput(sf::Keyboard::Key key, bool isPressed){
 	if (key == sf::Keyboard::Right) {
@@ -32,14 +62,18 @@ void Player::handlePlayerInput(sf::Keyboard::Key key, bool isPressed){
 		activeShoot = isPressed;
 	//	cout << "activando disparo";
 	}
+	if (key == sf::Keyboard::R) {
+		reset = isPressed;
+	}
+
 
 }
 void Player::move(sf::Time deltaTime){
 	sf::Vector2f movement(0.f, 0.f);
-	if (right&&sprite.getPosition().x+sprite.getLocalBounds().width<dimensionsScene.width) {
+	if (right&&sprite.getPosition().x+sprite.getLocalBounds().width<scene->dimensions.width) {
 		movement.x += velocity;
 	}
-	if (left&&sprite.getPosition().x>dimensionsScene.origin.x) {
+	if (left&&sprite.getPosition().x>scene->dimensions.origin.x) {
 		movement.x -= velocity;
 	}
 	sprite.move(movement*deltaTime.asSeconds());
@@ -49,13 +83,14 @@ void Player::initialize(){
 	if (!texture.loadFromFile("assets/playerNormal.png")) {
 		std::cout << "error";
 	};
-	if (!soundBuffer.loadFromFile("assets/Sounds/zapPlayer.wav")||!soundBufferEfectLoose.loadFromFile("assets/Sounds/loose.wav")) {
+	if (!soundBuffer.loadFromFile("assets/Sounds/zapPlayer.wav")||!soundBufferEfectLoose.loadFromFile("assets/Sounds/loose.wav")||!soundBufferEfectRespawn.loadFromFile("assets/Sounds/respawn.wav")) {
 		std::cout << "error al cargar el sonido";
 	}
 	soundColision.setBuffer(soundBuffer);
 	soundLoose.setBuffer(soundBufferEfectLoose);
+	soundRespawn.setBuffer(soundBufferEfectRespawn);
 	sprite.setTexture(texture);
-	sprite.setPosition(dimensionsScene.half-sprite.getLocalBounds().width/2,dimensionsScene.height-sprite.getLocalBounds().height);
+	sprite.setPosition(scene->dimensions.half-sprite.getLocalBounds().width/2, scene->dimensions.height-sprite.getLocalBounds().height);
 //sprite.setPosition(dimensionsScene.width-sprite.getGlobalBounds().width, dimensionsScene.height - sprite.getLocalBounds().height);
 
 }
@@ -88,9 +123,9 @@ void Player::initTextureAnimation(){
 	}
 }
 Player::~Player(){}
-Player::Player(sf::RenderWindow* _window,DimensionsScene _dimensions)
-	: window(_window), velocity(450),dimensionsScene(_dimensions),activeShoot(false),dead(false),
-	contador(0)
+Player::Player(sf::RenderWindow* _window,Scene* _scene)
+	: window(_window), velocity(450),scene(_scene),activeShoot(false),dead(false),
+	contador(0),totalLifes(2),currentLifes(totalLifes),activeAnimation(false), respawnBall(false),reset(false)
 {
 	initialize();
 }

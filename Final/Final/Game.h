@@ -9,7 +9,7 @@
 #include"Ball.h"
 #include"Collision.h"
 #include"Bricks.h"
-
+#include"Manager.h"
 class Game
 {
 public:
@@ -27,6 +27,7 @@ private:
 	Ball* ball;
 	Collision* collision;
 	Bricks* bricks;
+	Manager* manager;
 	sf::Music musicLevel;
 };
 

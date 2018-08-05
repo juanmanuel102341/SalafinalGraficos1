@@ -20,11 +20,13 @@ public:
 	Bricks(sf::RenderWindow* window, DimensionsScene _dimensionsScene);
 	~Bricks();
 	void draw();
-	void takeOutBrick(Brick*brick);
+	void initialBricks();
+
 	std::vector<Brick*>Vecbricks;
 	sf::Sound soundColision;
 private:
 	void init();
+
 	sf::RenderWindow* window;
 	DimensionsScene dimensions;
 	sf::Texture textureBlue;
