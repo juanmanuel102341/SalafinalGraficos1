@@ -157,6 +157,7 @@ copy "$(SolutionDir)SFML-2.4.2-windows-vc14-32-bit\SFML-2.4.2\bin\sfml-audio-d-2
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Manager.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -167,6 +168,7 @@ copy "$(SolutionDir)SFML-2.4.2-windows-vc14-32-bit\SFML-2.4.2\bin\sfml-audio-d-2
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Manager.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Reg.h" />
     <ClInclude Include="Scene.h" />
