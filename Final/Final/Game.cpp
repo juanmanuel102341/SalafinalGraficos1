@@ -80,6 +80,7 @@ void Game::render() {
 		//menu
 		window.clear();
 		menu->draw();
+
 		window.display();
 	}
 }
@@ -91,11 +92,13 @@ Game::~Game() {
 	delete collision;
 	delete manager;
 	delete menu;
+	delete buttons;
 }
 Game::Game(){
 //window.create(sf::VideoMode(widthScene,heightScene), "ARKANOID");
 window.create(sf::VideoMode::getFullscreenModes()[0], "ARKANOID", sf::Style::Fullscreen);
-menu = new Menu(&window);
+buttons = new Buttons(&window);
+menu = new Menu(&window,buttons);
 scene = new Scene(&window);
 player = new Player(&window,scene);
 ball = new Ball(&window, scene->dimensions, player);

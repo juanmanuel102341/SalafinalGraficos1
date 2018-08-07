@@ -10,7 +10,9 @@
 #include"Collision.h"
 #include"Bricks.h"
 #include"Manager.h"
+#include"Buttons.h"
 #include"Menu.h"
+
 class Game
 {
 public:
@@ -30,6 +32,7 @@ private:
 	Bricks* bricks;
 	Manager* manager;
 	Menu* menu;
+	Buttons* buttons;
 	sf::Music musicLevel;
 
 };
