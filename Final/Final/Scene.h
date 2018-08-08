@@ -5,6 +5,8 @@
 #include<SFML/Audio.hpp>
 #include<iostream>
 #include"Reg.h"
+
+
 using namespace std;
 struct DimensionsScene {
 	float width, height,half;
@@ -18,6 +20,7 @@ public:
 	~Scene();
 	void draw();
 	void init();
+	
 	sf::Sprite sprite;
 	sf::Texture texture;
 	sf::RenderWindow* window;
@@ -29,6 +32,9 @@ public:
 	DimensionsScene dimensions;
 	bool levelPass;
 	bool loose;
+	
+
+	
 private:
 	sf::SoundBuffer bufferEfectColision;
 	sf::SoundBuffer bufferEfectWin;

@@ -29,7 +29,7 @@ private:
 	Buttons* buttons;
 	sf::Texture textureCredits;
 	sf::Sprite backMenu;
-	
+	sf::Sprite spriteCredits;
 	
 	
 	

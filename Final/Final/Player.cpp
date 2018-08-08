@@ -30,9 +30,9 @@ void Player::update(sf::Time deltaTime) {
 				soundRespawn.play();
 				resetState();
 				timer = 0;
-				currentLifes--;
+				
 			//	std::cout << "cantidad d vidas current " << currentLifes;
-			}else{
+			}else if(!finalLevel){
 				//soundLoose.play();
 
 				scene->loose = true;
@@ -64,6 +64,12 @@ void Player::handlePlayerInput(sf::Keyboard::Key key, bool isPressed){
 	}
 	if (key == sf::Keyboard::R) {
 		reset = isPressed;
+	}
+	if (key == sf::Keyboard::U) {
+		debugWin=isPressed;
+	}
+	if (key == sf::Keyboard::Escape) {
+		menu = isPressed;
 	}
 
 
@@ -125,7 +131,7 @@ void Player::initTextureAnimation(){
 Player::~Player(){}
 Player::Player(sf::RenderWindow* _window,Scene* _scene)
 	: window(_window), velocity(450),scene(_scene),activeShoot(false),dead(false),
-	contador(0),totalLifes(2),currentLifes(totalLifes),activeAnimation(false), respawnBall(false),reset(false)
+	contador(0),totalLifes(1),currentLifes(totalLifes),activeAnimation(false), respawnBall(false),reset(false),debugWin(false),menu(false),finalLevel(false)
 {
 	initialize();
 }

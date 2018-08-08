@@ -8,6 +8,7 @@ void Menu::update(sf::Time deltaTime) {
 	if (buttons->goCredits) {
 		buttons->drawMenuButtons = false;
 		buttons->drawCreditsButtons = true;
+		
 	}
 	else {
 		buttons->drawCreditsButtons = false;
@@ -19,7 +20,14 @@ void Menu::update(sf::Time deltaTime) {
 }
 
 void Menu::draw(){
-	window->draw(backMenu);
+	if (buttons->goCredits) {
+		window->draw(spriteCredits);
+	}
+	else
+	{
+		window->draw(backMenu);
+	}
+	
 	buttons->draw();
 }
 
@@ -30,8 +38,9 @@ void Menu::init() {
 	}
 
 	backMenu.setTexture(textureBackMenu);
-
+	spriteCredits.setTexture(textureCredits);
 	backMenu.setPosition(sf::VideoMode::getDesktopMode().width / 2 - backMenu.getLocalBounds().width / 2, sf::VideoMode::getDesktopMode().height / 2 - backMenu.getLocalBounds().height / 2);
+	spriteCredits.setPosition(sf::VideoMode::getDesktopMode().width / 2 - spriteCredits.getLocalBounds().width / 2, sf::VideoMode::getDesktopMode().height / 2 - spriteCredits.getLocalBounds().height / 2);
 	buttons->setDimensionsSceneMenu(backMenu.getPosition(), backMenu.getLocalBounds().width, backMenu.getLocalBounds().height);
 	buttons->drawMenuButtons = true;
 	

@@ -8,6 +8,7 @@ void Buttons::setDimensionsSceneMenu(sf::Vector2f vec, float _widthScene, float 
 	buttonExit.setPosition(buttonCredits.getPosition().x + buttonCredits.getLocalBounds().width / 2 - buttonExit.getLocalBounds().width / 2, buttonCredits.getPosition().y + buttonCredits.getLocalBounds().height + 30);
 	buttonMenu.setPosition(dimensionsScene.x + widthScene - buttonMenu.getLocalBounds().width, dimensionsScene.y + heightScene - buttonMenu.getLocalBounds().height);
 }
+
 void Buttons::draw(){
 	if (drawMenuButtons) {
 		window->draw(buttonPlay);
@@ -16,6 +17,10 @@ void Buttons::draw(){
 	}
 	if (drawCreditsButtons) {
 		window->draw(buttonMenu);
+	}
+	if (drawFinalGuiState) {
+		window->draw(buttonMenu);
+		window->draw(buttonReplay);
 	}
 }
 bool Buttons::collideEnter(sf::Sprite sprite) {
@@ -27,14 +32,11 @@ bool Buttons::collideEnter(sf::Sprite sprite) {
 }
 void Buttons::update(sf::Time deltaTime){
 		detectStates(buttonPlay, vecTexturePlay[0], vecTexturePlay[1], vecTexturePlay[2], applyTexture, state, deltaTime, currentState::start);
-
 		detectStates(buttonCredits, vecTextureCredits[0], vecTextureCredits[1], vecTextureCredits[2], apply2, state, deltaTime, currentState::credits);
-
-	detectStates(buttonExit, vecTextureExit[0], vecTextureExit[1], vecTextureExit[2], apply3, state, deltaTime, currentState::exit);
-
-	detectStates(buttonMenu, vecTextureMenu[0], vecTextureMenu[1], vecTextureMenu[2], apply4, state, deltaTime, currentState::menu);
-
- 
+		detectStates(buttonExit, vecTextureExit[0], vecTextureExit[1], vecTextureExit[2], apply3, state, deltaTime, currentState::exit);
+		detectStates(buttonMenu, vecTextureMenu[0], vecTextureMenu[1], vecTextureMenu[2], apply4, state, deltaTime, currentState::menu);
+		detectStates(buttonReplay, vecTextureReplay[0], vecTextureReplay[1], vecTextureReplay[2], apply5, state, deltaTime, currentState::replay);
+		
 }
 void Buttons::detectStates(sf::Sprite& sprite, sf::Texture& textOut, sf::Texture& textOver, sf::Texture& textPress, bool& apply, currentState& _state, sf::Time delta, currentState objState) {
 	if (startState) {
@@ -65,6 +67,10 @@ void Buttons::detectStates(sf::Sprite& sprite, sf::Texture& textOut, sf::Texture
 				startState = false;
 				window->close();
 				break;
+			case currentState::replay:
+				goReplay = true;
+				startState = false;
+				timer = 0;
 			}
 		}
 	}
@@ -100,34 +106,38 @@ void Buttons::setTexturesButtons() {
 		sf::Texture texture2;
 		sf::Texture texture3;
 		sf::Texture texture4;
+		sf::Texture texture5;
 		switch (i)
 		{
 		case 0:
-			if (!texture.loadFromFile("Assets/Buttons/buttonPlay_1.png") || !texture2.loadFromFile("Assets/Buttons/buttonCredits_1.png") || !texture3.loadFromFile("Assets/Buttons/buttonExit_1.png") || texture4.loadFromFile("Assets/Buttons/buttonsMenu_1.png")) {
+			if (!texture.loadFromFile("Assets/Buttons/buttonPlay_1.png") || !texture2.loadFromFile("Assets/Buttons/buttonCredits_1.png") || !texture3.loadFromFile("Assets/Buttons/buttonExit_1.png") || !texture4.loadFromFile("Assets/Buttons/buttonsMenu_1.png")||!texture5.loadFromFile("Assets/Buttons/buttonReplay_1.png")) {
 				cout << "textura no cargada menu";
 			}
 			vecTexturePlay.push_back(texture);
 			vecTextureCredits.push_back(texture2);
 			vecTextureExit.push_back(texture3);
 			vecTextureMenu.push_back(texture4);
+			vecTextureReplay.push_back(texture5);
 			break;
 		case 1:
-			if (!texture.loadFromFile("Assets/Buttons/buttonPlay_2.png") || !texture2.loadFromFile("Assets/Buttons/buttonCredits_2.png") || !texture3.loadFromFile("Assets/Buttons/buttonExit_2.png") || texture4.loadFromFile("Assets/Buttons/buttonsMenu_2.png")) {
+			if (!texture.loadFromFile("Assets/Buttons/buttonPlay_2.png") || !texture2.loadFromFile("Assets/Buttons/buttonCredits_2.png") || !texture3.loadFromFile("Assets/Buttons/buttonExit_2.png") || !texture4.loadFromFile("Assets/Buttons/buttonsMenu_2.png")||!texture5.loadFromFile("Assets/Buttons/buttonReplay_2.png")) {
 				cout << "textura no cargada menu";
 			}
 			vecTexturePlay.push_back(texture);
 			vecTextureCredits.push_back(texture2);
 			vecTextureExit.push_back(texture3);
 			vecTextureMenu.push_back(texture4);
+			vecTextureReplay.push_back(texture5);
 			break;
 		case 2:
-			if (!texture.loadFromFile("Assets/Buttons/buttonPlay_3.png") || !texture2.loadFromFile("Assets/Buttons/buttonCredits_3.png") || !texture3.loadFromFile("Assets/Buttons/buttonExit_3.png") || texture4.loadFromFile("Assets/Buttons/buttonsMenu_3.png")) {
+			if (!texture.loadFromFile("Assets/Buttons/buttonPlay_3.png") || !texture2.loadFromFile("Assets/Buttons/buttonCredits_3.png") || !texture3.loadFromFile("Assets/Buttons/buttonExit_3.png") || !texture4.loadFromFile("Assets/Buttons/buttonsMenu_3.png")||!texture5.loadFromFile("Assets/Buttons/buttonReplay_3.png")) {
 				cout << "textura no cargada menu";
 			}
 			vecTexturePlay.push_back(texture);
 			vecTextureCredits.push_back(texture2);
 			vecTextureExit.push_back(texture3);
 			vecTextureMenu.push_back(texture4);
+			vecTextureReplay.push_back(texture5);
 			break;
 		}
 	}
@@ -138,12 +148,12 @@ void Buttons::init() {
 	buttonCredits.setTexture(vecTextureCredits[0]);
 	buttonExit.setTexture(vecTextureExit[0]);
 	buttonMenu.setTexture(vecTextureMenu[0]);
-
+	buttonReplay.setTexture(vecTextureReplay[0]);
 
 	
 }
 Buttons::Buttons(sf::RenderWindow* _window) :window(_window), drawMenuButtons(false), drawCreditsButtons(false), timer(0), applyTexture(false), apply2(false), apply3(false),
-apply4(false), press(false), goCredits(false), startState(false),goGame(false),widthScene(0),heightScene(0)
+apply4(false),apply5(false), press(false), goCredits(false), startState(false),goGame(false),widthScene(0),heightScene(0),goReplay(0)
 {
 	init();
 }

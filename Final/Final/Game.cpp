@@ -6,7 +6,7 @@ void Game::run() {
 
 	//musicLevel.play();
 	
-//	musicLevel.setLoop(true);
+	musicLevel.setLoop(true);
 	while (window.isOpen())
 	{
 		sf::Time deltaTime = clock.restart();
@@ -18,6 +18,10 @@ void Game::run() {
 }
 void Game::update(sf::Time deltaTime){
 	if (menu->startGame) {
+		if (!activeMusic) {
+			musicLevel.play();
+			activeMusic = true;
+		}
 		player->move(deltaTime);
 		player->update(deltaTime);
 		ball->update(deltaTime);
@@ -25,6 +29,7 @@ void Game::update(sf::Time deltaTime){
 		collision->collideBallPlayer();
 		collision->collideBallBricks();
 		manager->update(deltaTime);
+		
 	}
 	else {
 		//menu
@@ -74,7 +79,10 @@ void Game::render() {
 		player->draw();
 		bricks->draw();
 		ball->draw();
+		manager->draw();
 		window.display();
+
+
 	}
 	else {
 		//menu
@@ -94,7 +102,7 @@ Game::~Game() {
 	delete menu;
 	delete buttons;
 }
-Game::Game(){
+Game::Game():activeMusic(false){
 //window.create(sf::VideoMode(widthScene,heightScene), "ARKANOID");
 window.create(sf::VideoMode::getFullscreenModes()[0], "ARKANOID", sf::Style::Fullscreen);
 buttons = new Buttons(&window);
@@ -104,9 +112,13 @@ player = new Player(&window,scene);
 ball = new Ball(&window, scene->dimensions, player);
 bricks = new Bricks(&window, scene->dimensions);
 collision = new Collision(ball, scene,player,bricks);
-manager = new Manager(player, bricks, scene);
+
+manager = new Manager(player, bricks, scene,&window,menu,ball);
 if (!musicLevel.openFromFile("assets/Sounds/music.wav")) {
 	std::cout << "error loaded music wav";
+
 }
+
+
 run();
 }

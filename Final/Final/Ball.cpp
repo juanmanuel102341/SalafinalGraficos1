@@ -61,7 +61,7 @@ void Ball::update(sf::Time deltaTime){
 	}
 	if (sprite.getPosition().y + sprite.getGlobalBounds().height > dimensionsScene.height&&!dead) {
 		dead = true;
-	
+		player->currentLifes--;
 		player->activeAnimation = true;
 	}
 	if (player->respawnBall) {
@@ -87,7 +87,7 @@ void Ball::init(){
 	sprite.setPosition(player->sprite.getPosition().x+player->sprite.getLocalBounds().width/2 - sprite.getLocalBounds().width / 2, player->sprite.getPosition().y - sprite.getLocalBounds().height);
 }
 Ball::Ball(sf::RenderWindow* _window, DimensionsScene _dimensionsScene, Player* _player) : window(_window), dimensionsScene(_dimensionsScene), player(_player),
-active(false), velocity(350), directionY(-1), directionX(1), propx(0), propy(0), dead(false)
+active(false), velocity(450), directionY(-1), directionX(1), propx(0), propy(0), dead(false)
 {
 	init();
 }

@@ -28,12 +28,15 @@ public:
 	bool dead;
 	bool activeAnimation;
 	bool respawnBall;
+	bool debugWin;
 	sf::Sound soundColision;
 	sf::Sound soundLoose;
 	sf::Sound soundRespawn;
 	const int totalLifes;
 	bool reset;
+	bool menu;
 	int currentLifes;
+	bool finalLevel;
 private:
 	void initialize();
 	void initTextureAnimation();

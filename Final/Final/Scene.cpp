@@ -1,9 +1,11 @@
 #include"Scene.h"
+
 void Scene::draw(){
 	window->draw(sprite);
 	window->draw(colliderUp);
 	window->draw(colliderleft);
 	window->draw(colliderRight);
+	
 }
 
 void Scene::init(){
@@ -27,16 +29,24 @@ void Scene::init(){
 
 	colliderUp.setSize(sf::Vector2f(sprite.getLocalBounds().width,40));
 	colliderUp.setPosition(sprite.getPosition().x, sprite.getPosition().y);
+	colliderUp.setFillColor(sf::Color::Transparent);
 
 	colliderleft.setSize(sf::Vector2f(40, sprite.getLocalBounds().height));
 	colliderleft.setPosition(sprite.getPosition().x, sprite.getPosition().y);
-	colliderleft.setFillColor(sf::Color::Blue);
+	colliderleft.setFillColor(sf::Color::Transparent);
+	
 	
 	colliderRight.setSize(sf::Vector2f(40, sprite.getLocalBounds().height));
 	colliderRight.setPosition(sprite.getPosition().x + sprite.getLocalBounds().width-38, sprite.getPosition().y);
-	colliderRight.setFillColor(sf::Color::Red);
+	colliderRight.setFillColor(sf::Color::Transparent);
+	
+	
+	
+
 }
-Scene::~Scene(){}
+Scene::~Scene(){
+	
+}
 Scene::Scene(sf::RenderWindow* _window): window(_window),levelPass(false),loose(false){
 	init();
 }

@@ -9,16 +9,19 @@ class Buttons
 {
 public:
 	enum currentState {
-		start, credits, exit, menu
+		start, credits, exit, menu, replay
 	};
 	Buttons(sf::RenderWindow* _window);
 	void update(sf::Time deltaTime);
 	~Buttons();
 	void setDimensionsSceneMenu(sf::Vector2f dim,float widthScene,float heightScene);
+
 	bool drawMenuButtons;
 	bool drawCreditsButtons;
+	bool drawFinalGuiState;
 	bool goCredits;
 	bool goGame;
+	bool goReplay;
 	bool startState;
 	void draw();
 private:
@@ -33,14 +36,19 @@ private:
 	std::vector<sf::Texture>vecTextureCredits;
 	std::vector<sf::Texture>vecTextureExit;
 	std::vector<sf::Texture>vecTextureMenu;
+	std::vector<sf::Texture>vecTextureReplay;
+	
 	sf::Texture currentTexturePlay;
 	sf::Texture currentTextureCredits;
 	sf::Texture currentTextureExit;
 	sf::Texture currentTextureMenu;
+	sf::Texture currentTecturePlay
+		;
 	sf::Sprite buttonPlay;
 	sf::Sprite buttonCredits;
 	sf::Sprite buttonExit;
 	sf::Sprite buttonMenu;
+	sf::Sprite buttonReplay;
 	currentState state;
 	sf::RenderWindow* window;
 
@@ -51,6 +59,7 @@ private:
 	bool apply2;
 	bool apply3;
 	bool apply4;
+	bool apply5;
 	bool press;
 };
 #endif // !BUTTONS_H

@@ -34,6 +34,7 @@ private:
 	Menu* menu;
 	Buttons* buttons;
 	sf::Music musicLevel;
+	bool activeMusic;
 
 };
 
